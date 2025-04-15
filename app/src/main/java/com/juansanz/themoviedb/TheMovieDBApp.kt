@@ -1,7 +1,7 @@
-package template
+package com.juansanz.themoviedb
 
 import android.app.Application
 import dagger.hilt.android.HiltAndroidApp
 
 @HiltAndroidApp
-class TemplateApp : Application()
+class TheMovieDBApp : Application()
