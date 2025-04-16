@@ -48,6 +48,7 @@ fun Detail(
 ) {
     val state by vm.state.collectAsState()
     val scrollBehavior = TopAppBarDefaults.exitUntilCollapsedScrollBehavior()
+    val imageVectorValid = if (state.movie?.favorite == true) Icons.Default.Favorite else Icons.Default.FavoriteBorder
 
     Scaffold(
         topBar = {
@@ -60,7 +61,7 @@ fun Detail(
         floatingActionButton = {
             FloatingActionButton(onClick = vm::onFavoriteClicked) {
                 Icon(
-                    imageVector = if (state.movie?.favorite == true) Icons.Default.Favorite else Icons.Default.FavoriteBorder,
+                    imageVector = imageVectorValid,
                     contentDescription = "Mark as Favorite",
                 )
             }
