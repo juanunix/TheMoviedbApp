@@ -31,6 +31,8 @@ import coil.compose.AsyncImage
 import com.juansanz.themovieapp.R
 import com.juansanz.themovieapp.ui.screens.model.Movie
 
+const val RATIO = 2 / 3f
+
 @Composable
 fun MoviesGrid(
     movies: List<Movie>,
@@ -70,7 +72,7 @@ private fun MovieItem(
                 contentScale = ContentScale.Crop,
                 modifier = Modifier
                     .fillMaxWidth()
-                    .aspectRatio(2 / 3f),
+                    .aspectRatio(RATIO),
             )
             if (movie.favorite) {
                 Icon(

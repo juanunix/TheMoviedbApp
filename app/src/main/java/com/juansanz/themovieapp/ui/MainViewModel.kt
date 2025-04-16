@@ -8,10 +8,7 @@ import kotlinx.coroutines.flow.StateFlow
 import kotlinx.coroutines.flow.asStateFlow
 import kotlinx.coroutines.launch
 
-class MainViewModel constructor(
-    /*getPopularMoviesUseCase: GetPopularMoviesUseCase,
-    private val requestPopularMoviesUseCase: RequestPopularMoviesUseCase*/
-) : ViewModel() {
+class MainViewModel : ViewModel() {
     private val _state = MutableStateFlow(UiState())
     val state: StateFlow<UiState> = _state.asStateFlow()
 
