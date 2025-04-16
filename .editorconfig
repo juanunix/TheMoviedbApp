@@ -1,7 +1,8 @@
 root = true
 
 [*.{kt,kts}]
-max_line_length = 140
+ktlint_code_style = ktlint_official
+max_line_length = off
 indent_size = 4
 insert_final_newline = true
 ij_kotlin_allow_trailing_comma = true

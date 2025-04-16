@@ -3,6 +3,7 @@ package com.juansanz.themovieapp.ui
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
 import com.juansanz.themovieapp.ui.screens.model.Movie
+import com.juansanz.themovieapp.ui.screens.model.fakesMovies
 import kotlinx.coroutines.flow.MutableStateFlow
 import kotlinx.coroutines.flow.StateFlow
 import kotlinx.coroutines.flow.asStateFlow
@@ -30,7 +31,7 @@ class MainViewModel : ViewModel() {
 
     data class UiState(
         val loading: Boolean = false,
-        val movies: List<Movie>? = null,
+        val movies: List<Movie>? = fakesMovies,
         val error: Error? = null,
     )
 }
