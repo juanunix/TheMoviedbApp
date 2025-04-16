@@ -37,7 +37,8 @@ val fakesMovies = listOf(
         originalLanguage = "en",
         originalTitle = "The Outfit",
         overview = "Leonard is an English tailor who used to craft suits on London’s world-famous Savile Row. After a personal tragedy, " +
-            "he’s ended up in Chicago, operating a small tailor shop in a rough part of town where he makes beautiful clothes for the only people around who can afford them: a family of vicious gangsters.",
+            "he’s ended up in Chicago, operating a small tailor shop in a rough part of town where he makes beautiful clothes for " +
+            "the only people around who can afford them: a family of vicious gangsters.",
         popularity = 3847.22,
         posterPath = "/mBUoNT1nJ2dK53PXRSUOyoPez8S.jpg",
         releaseDate = "2022-03-18",

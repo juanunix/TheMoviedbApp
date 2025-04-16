@@ -10,4 +10,3 @@ naming:
     functionPattern: '[a-z][a-zA-Z0-9]*'
     excludeClassPattern: '$^'
     ignoreAnnotated: ['Composable','MagicNumber','Preview']
-
