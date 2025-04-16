@@ -6,6 +6,7 @@ import androidx.navigation.compose.NavHost
 import androidx.navigation.compose.composable
 import androidx.navigation.compose.rememberNavController
 import androidx.navigation.navArgument
+import com.juansanz.themovieapp.ui.screens.detail.Detail
 import com.juansanz.themovieapp.ui.screens.home.Home
 
 sealed class Screen(
@@ -29,15 +30,17 @@ fun Navigation() {
     val navController = rememberNavController()
     NavHost(navController = navController, startDestination = Screen.Main.route) {
         composable(Screen.Main.route) {
-            Home(onMovieClick = { movie ->
-                // navController.navigate(Screen.Detail.createRoute(movie.id))
-            })
+            Home(
+                onMovieClick = { movie ->
+                    navController.navigate(Screen.Detail.createRoute(movie.id))
+                },
+            )
         }
         composable(
             route = Screen.Detail.route,
             arguments = listOf(navArgument(NavArgs.ItemId.key) { type = NavType.IntType }),
         ) {
-//            Detail(onUpClick = { navController.popBackStack() })
+            Detail(onUpClick = { navController.popBackStack() })
         }
     }
 }

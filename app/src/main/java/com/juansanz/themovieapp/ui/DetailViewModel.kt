@@ -3,6 +3,7 @@ package com.juansanz.themovieapp.ui
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
 import com.juansanz.themovieapp.ui.screens.model.Movie
+import com.juansanz.themovieapp.ui.screens.model.fakeMovie
 import kotlinx.coroutines.flow.MutableStateFlow
 import kotlinx.coroutines.flow.StateFlow
 import kotlinx.coroutines.flow.asStateFlow
@@ -30,7 +31,7 @@ class DetailViewModel : ViewModel() {
     }
 
     data class UiState(
-        val movie: Movie? = null,
+        val movie: Movie? = fakeMovie,
         val error: Error? = null,
     )
 }

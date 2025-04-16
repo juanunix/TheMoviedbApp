@@ -32,6 +32,7 @@ import androidx.compose.ui.text.SpanStyle
 import androidx.compose.ui.text.buildAnnotatedString
 import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.text.withStyle
+import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
 import coil.compose.AsyncImage
@@ -39,6 +40,7 @@ import com.juansanz.themovieapp.ui.DetailViewModel
 import com.juansanz.themovieapp.ui.screens.common.ErrorText
 import com.juansanz.themovieapp.ui.screens.model.Error
 import com.juansanz.themovieapp.ui.screens.model.Movie
+import com.juansanz.themovieapp.ui.theme.ThemoviedbTheme
 
 @OptIn(ExperimentalMaterial3Api::class)
 @Composable
@@ -48,7 +50,8 @@ fun Detail(
 ) {
     val state by vm.state.collectAsState()
     val scrollBehavior = TopAppBarDefaults.exitUntilCollapsedScrollBehavior()
-    val imageVectorValid = if (state.movie?.favorite == true) Icons.Default.Favorite else Icons.Default.FavoriteBorder
+    val imageVectorValid =
+        if (state.movie?.favorite == true) Icons.Default.Favorite else Icons.Default.FavoriteBorder
 
     Scaffold(
         topBar = {
@@ -110,11 +113,12 @@ fun MovieContent(
     movie: Movie,
     modifier: Modifier = Modifier,
 ) {
+    val imageUrl = "https://image.tmdb.org/t/p/w780/${movie.backdropPath}"
     Column(
         modifier = modifier.verticalScroll(rememberScrollState()),
     ) {
         AsyncImage(
-            model = movie.backdropPath,
+            model = imageUrl,
             contentDescription = movie.title,
             contentScale = ContentScale.Crop,
             modifier = Modifier.fillMaxWidth(),
@@ -150,5 +154,16 @@ private fun AnnotatedString.Builder.Property(
         if (!end) {
             append("\n")
         }
+    }
+}
+
+@Preview
+@Composable
+private fun DetailPreview() {
+    ThemoviedbTheme {
+        Detail(
+            onUpClick = {},
+            vm = DetailViewModel(),
+        )
     }
 }

@@ -60,6 +60,8 @@ private fun MovieItem(
     movie: Movie,
     onMovieClick: () -> Unit,
 ) {
+    val imageUrl = "https://image.tmdb.org/t/p/w185/${movie.posterPath}"
+
     Column(
         modifier = Modifier
             .fillMaxHeight()
@@ -67,7 +69,7 @@ private fun MovieItem(
     ) {
         Box {
             AsyncImage(
-                model = movie.posterPath,
+                model = imageUrl,
                 contentDescription = movie.title,
                 contentScale = ContentScale.Crop,
                 modifier = Modifier
