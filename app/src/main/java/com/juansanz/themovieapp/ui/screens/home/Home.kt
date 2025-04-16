@@ -73,6 +73,7 @@ private fun HomeTopAppBar(scrollBehavior: TopAppBarScrollBehavior) {
     )
 }
 
+@Suppress("UnusedPrivateMember")
 @Preview
 @Composable
 private fun HomePreview() {

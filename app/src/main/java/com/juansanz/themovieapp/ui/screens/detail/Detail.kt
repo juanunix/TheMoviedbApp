@@ -157,6 +157,7 @@ private fun AnnotatedString.Builder.Property(
     }
 }
 
+@Suppress("UnusedPrivateMember")
 @Preview
 @Composable
 private fun DetailPreview() {
