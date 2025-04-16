@@ -6,7 +6,7 @@
 
 
     <application
-        android:name=".TheMovieDBApp"
+        android:name="com.juansanz.themovieapp.TheMovieApp"
         android:allowBackup="true"
         android:icon="@mipmap/ic_launcher"
         android:label="@string/app_name"
@@ -15,7 +15,7 @@
         android:theme="@style/Theme.AppTheme">
 
         <activity
-            android:name="com.juansanz.themoviedb.MainActivity"
+            android:name="com.juansanz.themovieapp.MainActivity"
             android:exported="true"
             android:theme="@style/Theme.AppTheme.NoActionBar"
             android:windowSoftInputMode="adjustResize">

@@ -1,4 +1,4 @@
-package com.juansanz.themoviedb.theme
+package com.juansanz.themovieapp.theme
 
 import android.annotation.TargetApi
 import android.os.Build

@@ -1,6 +1,6 @@
 @file:Suppress("MagicNumber")
 
-package com.juansanz.themoviedb.theme
+package com.juansanz.themovieapp.theme
 
 import androidx.compose.ui.graphics.Color
 

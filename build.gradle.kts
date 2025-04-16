@@ -7,11 +7,30 @@ plugins {
     alias(libs.plugins.compose.compiler).apply(false)
     alias(libs.plugins.detekt).apply(true) // Needs to be applied at the root, unlike others.
     alias(libs.plugins.google.dagger.hilt).apply(false)
-    alias(libs.plugins.google.ksp).apply(false)
+    alias(libs.plugins.google.ksp).apply(false) version "2.1.20-2.0.0" apply false
     alias(libs.plugins.kotlin.android).apply(false)
     alias(libs.plugins.kotlinter).apply(false)
     alias(libs.plugins.square.sort.dependencies).apply(false)
+    alias(libs.plugins.jetbrains.kotlin.jvm) apply false
+
 }
+
+buildscript {
+    repositories {
+        google()
+        mavenCentral()
+        gradlePluginPortal()
+    }
+    dependencies {
+        classpath("com.android.tools.build:gradle:8.1.4")
+        classpath("org.jetbrains.kotlin:kotlin-gradle-plugin:1.9.20")
+        classpath("androidx.navigation:navigation-safe-args-gradle-plugin:2.7.5")
+        classpath("com.google.dagger:hilt-android-gradle-plugin:2.48.1")
+        classpath("com.github.ben-manes:gradle-versions-plugin:0.50.0")
+        classpath("org.jetbrains.kotlin:kotlin-gradle-plugin:1.8.10")
+    }
+}
+
 
 apply(from = "buildscripts/githooks.gradle")
 apply(from = "buildscripts/versionsplugin.gradle")
@@ -30,7 +49,7 @@ tasks.register("clean", Delete::class) {
 afterEvaluate {
     // We install the hook at the first occasion
     tasks.named("clean") {
-        dependsOn(":installGitHooks")
+//        dependsOn(":installGitHooks")
     }
 }
 

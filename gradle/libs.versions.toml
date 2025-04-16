@@ -1,42 +1,75 @@
 [versions]
 activityCompose = "1.10.1"
+activityKtx = "1.8.1"
 agp = "8.9.1"
 androidxTest = "1.2.1"
 appCompat = "1.7.0"
+arrowCore = "1.2.1"
 coil = "3.1.0"
+compiler = "4.16.0"
 compileSdk = "35"
 composeBom = "2025.04.00"
+constraintlayout = "2.1.4"
+converterGson = "2.9.0"
 detektGradlePlugin = "1.23.8"
 espresso = "3.6.1"
+espressoContrib = "3.5.1"
+glide = "4.16.0"
 gradleVersionsPlugin = "0.52.0"
 hilt = "2.56.1"
 junit = "4.13.2"
+junitKtx = "1.1.5"
 kotlin = "2.1.20"
 kotlinter = "5.0.1"
+kotlinxCoroutinesTestVersion = "1.7.3"
 ksp = "2.1.20-2.0.0"
 ktxCore = "1.16.0"
 leakCanary = "2.14"
 lifecycle = "2.8.7"
+lifecycleViewmodelKtx = "2.6.2"
+loggingInterceptor = "4.12.0"
 material = "1.12.0"
 minSdk = "23"
+mockwebserver = "4.12.0"
 moshi = "1.15.2"
+navigationFragmentKtx = "2.7.5"
+navigationUiKtx = "2.7.5"
 paparazzi = "1.3.5"
+playServicesLocation = "21.0.1"
+recyclerview = "1.3.2"
 retrofit = "2.11.0"
+retrofitVersion = "2.9.0"
 room = "2.7.0"
+rules = "1.5.0"
+runner = "1.5.2"
 sortDependencies = "0.14"
+jetbrainsKotlinJvm = "2.1.20"
 
 [libraries]
 android-material = { module = "com.google.android.material:material", version.ref = "material" }
 androidx-activity-compose = { module = "androidx.activity:activity-compose", version.ref = "activityCompose" }
+androidx-activity-ktx = { module = "androidx.activity:activity-ktx", version.ref = "activityKtx" }
+androidx-constraintlayout = { module = "androidx.constraintlayout:constraintlayout", version.ref = "constraintlayout" }
 androidx-core-ktx = { module = "androidx.core:core-ktx", version.ref = "ktxCore" }
 androidx-appcompat = { module = "androidx.appcompat:appcompat", version.ref = "appCompat" }
+androidx-espresso-contrib = { module = "androidx.test.espresso:espresso-contrib", version.ref = "espressoContrib" }
+androidx-junit-ktx = { module = "androidx.test.ext:junit-ktx", version.ref = "junitKtx" }
 androidx-lifecycle-runtime-ktx = { module = "androidx.lifecycle:lifecycle-runtime-ktx", version.ref = "lifecycle" }
+androidx-lifecycle-viewmodel-ktx = { module = "androidx.lifecycle:lifecycle-viewmodel-ktx", version.ref = "lifecycleViewmodelKtx" }
+androidx-navigation-fragment-ktx = { module = "androidx.navigation:navigation-fragment-ktx", version.ref = "navigationFragmentKtx" }
+androidx-recyclerview = { module = "androidx.recyclerview:recyclerview", version.ref = "recyclerview" }
 androidx-room-compiler = { module = "androidx.room:room-compiler", version.ref = "room" }
 androidx-room-runtime = { module = "androidx.room:room-runtime", version.ref = "room" }
+androidx-rules = { module = "androidx.test:rules", version.ref = "rules" }
+androidx-runner = { module = "androidx.test:runner", version.ref = "runner" }
 androidx-test-espresso-core = { module = "androidx.test.espresso:espresso-core", version.ref = "espresso" }
 androidx-test-junit = { module = "androidx.test.ext:junit", version.ref = "androidxTest" }
+androidx-ui = { module = "androidx.compose.ui:ui" }
+androidx-ui-tooling-preview = { module = "androidx.compose.ui:ui-tooling-preview" }
+arrow-core = { module = "io.arrow-kt:arrow-core", version.ref = "arrowCore" }
 coil-compose = { module = "io.coil-kt.coil3:coil-compose", version.ref = "coil" }
 coil-okhttp = { module = "io.coil-kt.coil3:coil-network-okhttp", version.ref = "coil" }
+compiler = { module = "com.github.bumptech.glide:compiler", version.ref = "compiler" }
 compose-bom = { group = "androidx.compose", name = "compose-bom", version.ref = "composeBom" }
 compose-material-icons-extended = { group = "androidx.compose.material", name = "material-icons-extended" }
 compose-material = { group = "androidx.compose.material3", name = "material3" }
@@ -44,15 +77,23 @@ compose-ui = { group = "androidx.compose.ui", name = "ui" }
 compose-ui-test-junit = { group = "androidx.compose.ui", name = "ui-test-junit4" }
 compose-ui-test-manifest = { group = "androidx.compose.ui", name = "ui-test-manifest" }
 compose-ui-tooling = { group = "androidx.compose.ui", name = "ui-tooling" }
+converter-gson = { module = "com.squareup.retrofit2:converter-gson", version.ref = "converterGson" }
 detekt-gradle-plugin = { module = "io.gitlab.arturbosch.detekt:detekt-gradle-plugin", version.ref = "detektGradlePlugin" }
+glide = { module = "com.github.bumptech.glide:glide", version.ref = "glide" }
 gradle = { module = "com.android.tools.build:gradle", version.ref = "agp" }
 gradle-versions-plugin = { module = "com.github.ben-manes:gradle-versions-plugin", version.ref = "gradleVersionsPlugin" }
 hilt-android = { module = "com.google.dagger:hilt-android", version.ref = "hilt" }
 hilt-android-compiler = { module = "com.google.dagger:hilt-android-compiler", version.ref = "hilt" }
 hilt-android-testing = { module = "com.google.dagger:hilt-android-testing", version.ref = "hilt" }
 hilt-compiler = { module = "com.google.dagger:hilt-compiler", version.ref = "hilt" }
+jetbrains-kotlinx-coroutines-test = { module = "org.jetbrains.kotlinx:kotlinx-coroutines-test", version.ref = "kotlinxCoroutinesTestVersion" }
 junit = { module = "junit:junit", version.ref = "junit" }
 kotlin-gradle-plugin = { module = "org.jetbrains.kotlin:kotlin-gradle-plugin", version.ref = "kotlin" }
+logging-interceptor = { module = "com.squareup.okhttp3:logging-interceptor", version.ref = "loggingInterceptor" }
+mockwebserver = { module = "com.squareup.okhttp3:mockwebserver", version.ref = "mockwebserver" }
+navigation-ui-ktx = { module = "androidx.navigation:navigation-ui-ktx", version.ref = "navigationUiKtx" }
+play-services-location = { module = "com.google.android.gms:play-services-location", version.ref = "playServicesLocation" }
+retrofit-v290 = { module = "com.squareup.retrofit2:retrofit", version.ref = "retrofitVersion" }
 square-leakcanary = { module = "com.squareup.leakcanary:leakcanary-android", version.ref = "leakCanary" }
 square-moshi-kotlin = { module = "com.squareup.moshi:moshi-kotlin", version.ref = "moshi" }
 square-moshi-kotlin-codegen = { module = "com.squareup.moshi:moshi-kotlin-codegen", version.ref = "moshi" }
@@ -70,5 +111,6 @@ google-ksp = { id = "com.google.devtools.ksp", version.ref = "ksp" }
 kotlin-android = { id = "org.jetbrains.kotlin.android", version.ref = "kotlin" }
 kotlinter = { id = "org.jmailen.kotlinter", version.ref = "kotlinter" }
 square-sort-dependencies = { id = "com.squareup.sort-dependencies", version.ref = "sortDependencies" }
+jetbrains-kotlin-jvm = { id = "org.jetbrains.kotlin.jvm", version.ref = "jetbrainsKotlinJvm" }
 
 [bundles]

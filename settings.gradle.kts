@@ -1,8 +1,8 @@
 pluginManagement {
     repositories {
+        gradlePluginPortal()
         google()
         mavenCentral()
-        gradlePluginPortal()
     }
 }
 dependencyResolutionManagement {
@@ -14,3 +14,9 @@ dependencyResolutionManagement {
 }
 rootProject.name = "TheMovieDB"
 include(":app")
+include(":data")
+include(":domain")
+include(":usecases")
+
+
+
