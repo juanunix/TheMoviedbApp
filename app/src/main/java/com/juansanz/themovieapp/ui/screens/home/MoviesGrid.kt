@@ -28,8 +28,8 @@ import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.text.style.TextAlign
 import androidx.compose.ui.unit.dp
 import coil.compose.AsyncImage
+import com.juansanz.domain.Movie
 import com.juansanz.themovieapp.R
-import com.juansanz.themovieapp.ui.screens.model.Movie
 
 const val RATIO = 2 / 3f
 
@@ -60,7 +60,7 @@ private fun MovieItem(
     movie: Movie,
     onMovieClick: () -> Unit,
 ) {
-    val imageUrl = "https://image.tmdb.org/t/p/w185/${movie.posterPath}"
+    val imageUrl = movie.posterPath
 
     Column(
         modifier = Modifier

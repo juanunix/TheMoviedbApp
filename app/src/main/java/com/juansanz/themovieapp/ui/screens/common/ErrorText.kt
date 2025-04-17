@@ -9,8 +9,8 @@ import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.text.style.TextAlign
+import com.juansanz.domain.Error
 import com.juansanz.themovieapp.R
-import com.juansanz.themovieapp.ui.screens.model.Error
 
 @Composable
 fun ErrorText(
