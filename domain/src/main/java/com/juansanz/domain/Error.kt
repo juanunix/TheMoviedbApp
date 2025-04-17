@@ -1,4 +1,4 @@
-package com.juansanz.themovieapp.ui.screens.model
+package com.juansanz.domain
 
 sealed interface Error {
     class Server(

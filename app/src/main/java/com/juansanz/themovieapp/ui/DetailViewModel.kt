@@ -2,8 +2,7 @@ package com.juansanz.themovieapp.ui
 
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
-import com.juansanz.themovieapp.ui.screens.model.Movie
-import com.juansanz.themovieapp.ui.screens.model.fakeMovie
+import com.juansanz.domain.Movie
 import kotlinx.coroutines.flow.MutableStateFlow
 import kotlinx.coroutines.flow.StateFlow
 import kotlinx.coroutines.flow.asStateFlow
@@ -22,16 +21,16 @@ class DetailViewModel : ViewModel() {
     }
 
     fun onFavoriteClicked() {
-        viewModelScope.launch {
-            /*_state.value.movie?.let { movie ->
+        /*viewModelScope.launch {
+            _state.value.movie?.let { movie ->
                 val error = switchMovieFavoriteUseCase(movie)
                 _state.update { it.copy(error = error) }
-            }*/
-        }
+            }
+        }*/
     }
 
     data class UiState(
-        val movie: Movie? = fakeMovie,
+        val movie: Movie? = null,
         val error: Error? = null,
     )
 }

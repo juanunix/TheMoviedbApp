@@ -14,13 +14,13 @@ import androidx.compose.ui.Modifier
 import androidx.compose.ui.input.nestedscroll.nestedScroll
 import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.tooling.preview.Preview
+import com.juansanz.domain.Error
+import com.juansanz.domain.Movie
 import com.juansanz.themovieapp.R
 import com.juansanz.themovieapp.ui.MainViewModel
 import com.juansanz.themovieapp.ui.screens.Screen
 import com.juansanz.themovieapp.ui.screens.common.ErrorText
 import com.juansanz.themovieapp.ui.screens.common.Loading
-import com.juansanz.themovieapp.ui.screens.model.Error
-import com.juansanz.themovieapp.ui.screens.model.Movie
 import com.juansanz.themovieapp.ui.theme.ThemoviedbTheme
 
 @OptIn(ExperimentalMaterial3Api::class)

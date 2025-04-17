@@ -1,7 +1,12 @@
-package com.juansanz.themovieapp.ui.screens.model
+package com.juansanz.themovieapp.data.database
 
+/*
+import androidx.room.Entity
+import androidx.room.PrimaryKey
+
+@Entity
 data class Movie(
-    val id: Int,
+    @PrimaryKey(autoGenerate = true) val id: Int,
     val title: String,
     val overview: String,
     val releaseDate: String,
@@ -11,5 +16,6 @@ data class Movie(
     val originalTitle: String,
     val popularity: Double,
     val voteAverage: Double,
-    val favorite: Boolean,
+    val favorite: Boolean
 )
+*/

@@ -15,7 +15,7 @@ sealed class Screen(
     object Main : Screen("main")
 
     object Detail : Screen("detail/{${NavArgs.ItemId.key}}") {
-        fun createRoute(id: Int) = "detail/$id"
+        fun createRoute(id: Long) = "detail/$id"
     }
 }
 

@@ -1,0 +1,43 @@
+package com.juansanz.domain
+
+/*data class Movie(
+    val id: Int,
+    val title: String,
+    val overview: String,
+    val releaseDate: String,
+    val posterPath: String,
+    val backdropPath: String,
+    val originalLanguage: String,
+    val originalTitle: String,
+    val popularity: Double,
+    val voteAverage: Double,
+    val favorite: Boolean,
+)*/
+
+data class Movie(
+    val id: Long,
+    val title: String,
+    val voteAverage: Double,
+    val voteCount: Int,
+    val status: String,
+    val releaseDate: String,
+    val revenue: Long,
+    val runtime: Int,
+    val adult: String,
+    val backdropPath: String,
+    val budget: Long,
+    val homepage: String,
+    val imdbId: String,
+    val originalLanguage: String,
+    val originalTitle: String,
+    val overview: String,
+    val popularity: Double,
+    val posterPath: String,
+    val tagline: String,
+    val genres: List<String>,
+    val productionCompanies: List<String>,
+    val productionCountries: List<String>,
+    val spokenLanguages: List<String>,
+    val keywords: List<String>,
+    val favorite: Boolean,
+)

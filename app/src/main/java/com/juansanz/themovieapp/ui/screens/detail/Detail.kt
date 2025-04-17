@@ -36,10 +36,10 @@ import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
 import coil.compose.AsyncImage
+import com.juansanz.domain.Error
+import com.juansanz.domain.Movie
 import com.juansanz.themovieapp.ui.DetailViewModel
 import com.juansanz.themovieapp.ui.screens.common.ErrorText
-import com.juansanz.themovieapp.ui.screens.model.Error
-import com.juansanz.themovieapp.ui.screens.model.Movie
 import com.juansanz.themovieapp.ui.theme.ThemoviedbTheme
 
 @OptIn(ExperimentalMaterial3Api::class)
