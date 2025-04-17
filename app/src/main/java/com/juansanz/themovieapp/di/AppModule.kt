@@ -2,7 +2,6 @@ package com.juansanz.themovieapp.di
 
 import com.juansanz.data.MoviesRepository
 import com.juansanz.data.datasource.MovieRemoteDataSource
-import com.juansanz.domain.Error
 import com.juansanz.themovieapp.data.server.MovieServerDataSource
 import com.juansanz.themovieapp.data.server.RemoteService
 import okhttp3.OkHttpClient
@@ -39,11 +38,6 @@ object AppModule {
     val moviesRepository: MoviesRepository by lazy {
         providesMoviesRepository()
     }
-
-    suspend fun getPopularMoviesUseCase(repository: MoviesRepository = moviesRepository) = repository.popularMovies
-
-    suspend fun requestPopularMoviesUseCase(repository: MoviesRepository = moviesRepository): Error? = repository.requestPopularMovies()
-//    suspend fun findMovieUseCase(id: Int, repository: MoviesRepository = moviesRepository): Flow<Movie> = repository.findById(id)
 }
 
 /*
