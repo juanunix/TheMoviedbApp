@@ -13,19 +13,17 @@ class MoviesRepository(
     private val _popularMovies = MutableStateFlow<List<Movie>>(emptyList())
     val popularMovies: Flow<List<Movie>> = _popularMovies
 
-//    fun findById(id: Int): Flow<Movie> = remoteDataSource.findById(id)
+    fun findById(id: Int): Flow<Movie> = remoteDataSource.findById(id)
 
     suspend fun requestPopularMovies(): Error? {
-        val result: Either<Error, List<Movie>> = remoteDataSource.findPopularMovies(title = "Inception")
-        println("MoviesRepository, requestPopularMovies: $result")
-
+        val result: Either<Error, List<Movie>> =
+            remoteDataSource.findPopularMovies(title = "Inception")
         result.fold(
             ifLeft = { return it },
             ifRight = { movieList ->
                 _popularMovies.value = movieList
             },
         )
-
         return null
     }
 }
