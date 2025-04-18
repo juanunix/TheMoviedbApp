@@ -7,6 +7,7 @@ import com.juansanz.domain.Movie
 import com.juansanz.themovieapp.data.toError
 import com.juansanz.themovieapp.di.AppModule
 import com.juansanz.usecases.FindMovieUseCase
+import com.juansanz.usecases.SwitchMovieFavoriteUseCase
 import kotlinx.coroutines.flow.MutableStateFlow
 import kotlinx.coroutines.flow.StateFlow
 import kotlinx.coroutines.flow.asStateFlow
@@ -17,6 +18,9 @@ import kotlinx.coroutines.launch
 class DetailViewModel(
     private val movieId: Int,
     val appmodule: AppModule = AppModule,
+    private val switchMovieFavoriteUseCase: SwitchMovieFavoriteUseCase = SwitchMovieFavoriteUseCase(
+        appmodule.moviesRepository,
+    ),
     val findMovieUseCase: FindMovieUseCase = FindMovieUseCase(appmodule.moviesRepository),
 ) : ViewModel() {
     private val _state = MutableStateFlow(UiState())
@@ -32,10 +36,10 @@ class DetailViewModel(
 
     fun onFavoriteClicked() {
         viewModelScope.launch {
-            /*_state.value.movie?.let { movie ->
+            _state.value.movie?.let { movie ->
                 val error = switchMovieFavoriteUseCase(movie)
                 _state.update { it.copy(error = error) }
-            }*/
+            }
         }
     }
 

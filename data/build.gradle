@@ -1,21 +1,29 @@
 plugins {
     id 'java-library'
     id 'org.jetbrains.kotlin.jvm'
-//  id 'org.jetbrains.kotlin.kapt'
     id("com.google.devtools.ksp")
 }
 
 dependencies {
-    implementation project(":domain")
-    implementation("io.arrow-kt:arrow-core:1.2.1")
-    implementation("javax.inject:javax.inject:1")
-    implementation("org.jetbrains.kotlinx:kotlinx-coroutines-core:1.7.3")
 
-    //TODO(testShared)
-    //testImplementation project(":testShared")
-    testImplementation("junit:junit:4.13.2")
-    testImplementation("org.mockito:mockito-inline:5.2.0")
-    testImplementation("org.mockito.kotlin:mockito-kotlin:5.1.0")
+    implementation project(":domain")
+
+    implementation("io.arrow-kt:arrow-core:1.2.1")
+
+    implementation("javax.inject:javax.inject:1")
+
+    implementation("org.jetbrains.kotlinx:kotlinx-coroutines-core:1.7.3")
+
+
+    //TODO(testShared)
+
+    //testImplementation project(":testShared")
+
+    testImplementation("junit:junit:4.13.2")
+
+    testImplementation("org.mockito:mockito-inline:5.2.0")
+
+    testImplementation("org.mockito.kotlin:mockito-kotlin:5.1.0")
 }
 
 java {
