@@ -9,10 +9,24 @@ import com.juansanz.themovieapp.data.tryCall
 class MovieServerDataSource(
     private val remoteService: RemoteService,
 ) : MovieRemoteDataSource {
+    override suspend fun findAllMovies(): Either<Error, List<Movie>> =
+        tryCall {
+            remoteService
+                .findAllMovies()
+                .toDomainModel()
+        }
+
     override suspend fun findPopularMovies(title: String): Either<Error, List<Movie>> =
         tryCall {
             remoteService
                 .searchByTitle(title = title)
+                .toDomainModel()
+        }
+
+    override suspend fun findById(id: String): Either<Error, Movie> =
+        tryCall {
+            remoteService
+                .searchByID(id = id)
                 .toDomainModel()
         }
 }

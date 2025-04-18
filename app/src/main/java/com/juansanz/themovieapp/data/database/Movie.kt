@@ -1,7 +1,11 @@
-package com.juansanz.domain
+package com.juansanz.themovieapp.data.database
 
+import androidx.room.Entity
+import androidx.room.PrimaryKey
+
+@Entity(tableName = "Movie")
 data class Movie(
-    val id: Long,
+    @PrimaryKey(autoGenerate = true) val id: Long,
     val title: String,
     val voteAverage: Double,
     val voteCount: Int,
@@ -20,10 +24,10 @@ data class Movie(
     val popularity: Double,
     val posterPath: String,
     val tagline: String,
-    val genres: List<String>,
-    val productionCompanies: List<String>,
-    val productionCountries: List<String>,
-    val spokenLanguages: List<String>,
-    val keywords: List<String>,
+    val genres: String,
+    val productionCompanies: String,
+    val productionCountries: String,
+    val spokenLanguages: String,
+    val keywords: String,
     val favorite: Boolean,
 )

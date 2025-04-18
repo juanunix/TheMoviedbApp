@@ -45,8 +45,11 @@ import com.juansanz.themovieapp.ui.theme.ThemoviedbTheme
 @OptIn(ExperimentalMaterial3Api::class)
 @Composable
 fun Detail(
+    movieId: Int,
     onUpClick: () -> Unit,
-    vm: DetailViewModel = DetailViewModel(),
+    vm: DetailViewModel = DetailViewModel(
+        movieId = movieId,
+    ),
 ) {
     val state by vm.state.collectAsState()
     val scrollBehavior = TopAppBarDefaults.exitUntilCollapsedScrollBehavior()
@@ -163,8 +166,9 @@ private fun AnnotatedString.Builder.Property(
 private fun DetailPreview() {
     ThemoviedbTheme {
         Detail(
+            0,
             onUpClick = {},
-            vm = DetailViewModel(),
+            vm = DetailViewModel(0),
         )
     }
 }
