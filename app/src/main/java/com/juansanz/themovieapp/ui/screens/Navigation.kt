@@ -40,7 +40,11 @@ fun Navigation() {
             route = Screen.Detail.route,
             arguments = listOf(navArgument(NavArgs.ItemId.key) { type = NavType.IntType }),
         ) {
-            Detail(onUpClick = { navController.popBackStack() })
+            val movieId = it.arguments?.getInt(NavArgs.ItemId.key) ?: 0
+            Detail(
+                movieId = movieId,
+                onUpClick = { navController.popBackStack() },
+            )
         }
     }
 }
