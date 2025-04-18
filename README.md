@@ -4,6 +4,10 @@ Aplicativo Android que consome a API do [The Movie Database (TMDb)](https://www.
 
 > Este projeto foi gerado a partir do [juanunix/AndroidAppTemplate](https://github.com/juanunix/AndroidAppTemplate).
 
+![master](https://github.com/user-attachments/assets/226eff42-5c1e-4083-8b52-4d42f808ed40)
+
+![detail](https://github.com/user-attachments/assets/29c3d349-9af5-4910-98d4-edd1d102931e)
+
 ## 🛠 Tecnologias e ferramentas utilizadas
 
 - **Kotlin** – Linguagem principal do projeto ✅  
