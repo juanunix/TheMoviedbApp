@@ -21,19 +21,17 @@ import com.juansanz.domain.movie1
 import com.juansanz.domain.movie2
 import com.juansanz.domain.movie3
 import com.juansanz.themovieapp.R
-import com.juansanz.themovieapp.di.AppModule
 import com.juansanz.themovieapp.ui.MainViewModel
 import com.juansanz.themovieapp.ui.screens.Screen
 import com.juansanz.themovieapp.ui.screens.common.ErrorText
 import com.juansanz.themovieapp.ui.screens.common.Loading
 import com.juansanz.themovieapp.ui.theme.ThemoviedbTheme
+import org.koin.androidx.compose.koinViewModel
 
 @OptIn(ExperimentalMaterial3Api::class)
 @Composable
 fun Home(
-    vm: MainViewModel = MainViewModel(
-        appmodule = AppModule,
-    ),
+    vm: MainViewModel = koinViewModel(),
     onMovieClick: (Movie) -> Unit,
 ) {
     /*PermissionRequestEffect(Manifest.permission.ACCESS_COARSE_LOCATION) {

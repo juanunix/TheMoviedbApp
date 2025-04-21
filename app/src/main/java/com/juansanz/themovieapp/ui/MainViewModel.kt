@@ -3,7 +3,6 @@ package com.juansanz.themovieapp.ui
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
 import com.juansanz.domain.Movie
-import com.juansanz.themovieapp.di.AppModule
 import com.juansanz.usecases.GetAllMoviesUseCase
 import kotlinx.coroutines.flow.MutableStateFlow
 import kotlinx.coroutines.flow.StateFlow
@@ -12,8 +11,7 @@ import kotlinx.coroutines.flow.update
 import kotlinx.coroutines.launch
 
 class MainViewModel(
-    appmodule: AppModule,
-    private val getAllMovies: GetAllMoviesUseCase = GetAllMoviesUseCase(appmodule.moviesRepository),
+    private val getAllMovies: GetAllMoviesUseCase,
 ) : ViewModel() {
     private val _state = MutableStateFlow(UiState())
     val state: StateFlow<UiState> = _state.asStateFlow()
