@@ -3,11 +3,11 @@ package com.juansanz.themovieapp.di
 import android.app.Application
 import androidx.room.Room
 import com.juansanz.data.MoviesRepository
-import com.juansanz.data.datasource.MovieLocalDataSource
-import com.juansanz.data.datasource.MovieRemoteDataSource
+import com.juansanz.data.datasource.LocalDataSource
+import com.juansanz.data.datasource.RemoteDataSource
 import com.juansanz.themovieapp.TheMovieApp
 import com.juansanz.themovieapp.data.database.MovieDatabase
-import com.juansanz.themovieapp.data.database.MovieRoomDataSource
+import com.juansanz.themovieapp.data.database.RoomDataSource
 import com.juansanz.themovieapp.data.server.MovieServerDataSource
 import com.juansanz.themovieapp.data.server.RemoteService
 import kotlinx.coroutines.DelicateCoroutinesApi
@@ -45,18 +45,17 @@ object AppModule {
                 app,
                 MovieDatabase::class.java,
                 "movie-db",
-            ).allowMainThreadQueries() // Solo para Testes
+            ).fallbackToDestructiveMigration() // Maneja cambios de esquema automáticamente
             .build()
-
-    fun provideMovieDao(db: MovieDatabase) = db.movieDao()
 
     fun providesMovieServerDataSource(remoteService: RemoteService = provideRemoteService()): MovieServerDataSource = MovieServerDataSource(remoteService)
 
-    fun providesMovieLocalDataSource(): MovieLocalDataSource = MovieRoomDataSource(provideMovieDao(provideDatabase(app = TheMovieApp.instance)))
+    fun providesMovieLocalDataSource(app: Application): LocalDataSource = RoomDataSource(db = provideDatabase(app))
 
     fun providesMoviesRepository(
-        remoteDataSource: MovieRemoteDataSource = providesMovieServerDataSource(),
-        localDataSource: MovieLocalDataSource = providesMovieLocalDataSource(),
+        app: Application,
+        remoteDataSource: RemoteDataSource = providesMovieServerDataSource(),
+        localDataSource: LocalDataSource = providesMovieLocalDataSource(app),
     ): MoviesRepository =
         MoviesRepository(
             remoteDataSource = remoteDataSource,
@@ -64,6 +63,6 @@ object AppModule {
         )
 
     val moviesRepository: MoviesRepository by lazy {
-        providesMoviesRepository()
+        providesMoviesRepository(TheMovieApp.instance)
     }
 }

@@ -1,21 +1,31 @@
 package com.juansanz.themovieapp.ui.screens.detail
 
+import android.content.res.Configuration
 import androidx.compose.foundation.background
+import androidx.compose.foundation.layout.Arrangement
+import androidx.compose.foundation.layout.Box
 import androidx.compose.foundation.layout.Column
+import androidx.compose.foundation.layout.PaddingValues
+import androidx.compose.foundation.layout.aspectRatio
 import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.padding
+import androidx.compose.foundation.layout.width
+import androidx.compose.foundation.lazy.LazyRow
+import androidx.compose.foundation.lazy.items
 import androidx.compose.foundation.rememberScrollState
 import androidx.compose.foundation.verticalScroll
 import androidx.compose.material.icons.Icons
 import androidx.compose.material.icons.filled.ArrowBack
 import androidx.compose.material.icons.filled.Favorite
 import androidx.compose.material.icons.filled.FavoriteBorder
+import androidx.compose.material3.CardDefaults
 import androidx.compose.material3.ExperimentalMaterial3Api
 import androidx.compose.material3.FloatingActionButton
 import androidx.compose.material3.Icon
 import androidx.compose.material3.IconButton
 import androidx.compose.material3.LargeTopAppBar
 import androidx.compose.material3.MaterialTheme
+import androidx.compose.material3.OutlinedCard
 import androidx.compose.material3.Scaffold
 import androidx.compose.material3.Text
 import androidx.compose.material3.TopAppBarDefaults
@@ -36,8 +46,10 @@ import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
 import coil.compose.AsyncImage
-import com.juansanz.domain.Error
 import com.juansanz.domain.Movie
+import com.juansanz.domain.movie1
+import com.juansanz.domain.movie2
+import com.juansanz.domain.movie3
 import com.juansanz.themovieapp.ui.DetailViewModel
 import com.juansanz.themovieapp.ui.screens.common.ErrorText
 import com.juansanz.themovieapp.ui.theme.ThemoviedbTheme
@@ -52,6 +64,16 @@ fun Detail(
     ),
 ) {
     val state by vm.state.collectAsState()
+    DetailContent(state, onUpClick, vm::onFavoriteClicked)
+}
+
+@Composable
+@OptIn(ExperimentalMaterial3Api::class)
+private fun DetailContent(
+    state: DetailViewModel.UiState,
+    onUpClick: () -> Unit,
+    onFavoriteClicked: () -> Unit,
+) {
     val scrollBehavior = TopAppBarDefaults.exitUntilCollapsedScrollBehavior()
     val imageVectorValid =
         if (state.movie?.favorite == true) Icons.Default.Favorite else Icons.Default.FavoriteBorder
@@ -65,7 +87,7 @@ fun Detail(
             )
         },
         floatingActionButton = {
-            FloatingActionButton(onClick = vm::onFavoriteClicked) {
+            FloatingActionButton(onClick = onFavoriteClicked) {
                 Icon(
                     imageVector = imageVectorValid,
                     contentDescription = "Mark as Favorite",
@@ -76,6 +98,7 @@ fun Detail(
     ) { padding ->
         state.movie?.let {
             MovieContent(
+                movieList = state.popularMovies ?: emptyList(),
                 movie = it,
                 modifier = Modifier.padding(padding),
             )
@@ -83,7 +106,7 @@ fun Detail(
 
         state.error?.let { error ->
             ErrorText(
-                error = error as Error,
+                error = error,
                 modifier = Modifier.padding(padding),
             )
         }
@@ -113,6 +136,7 @@ fun DetailTopAppBar(
 
 @Composable
 fun MovieContent(
+    movieList: List<Movie>,
     movie: Movie,
     modifier: Modifier = Modifier,
 ) {
@@ -140,6 +164,41 @@ fun MovieContent(
                 .background(color = MaterialTheme.colorScheme.secondaryContainer)
                 .padding(16.dp),
         )
+        PopularMoviesContent(movieList = movieList)
+    }
+}
+
+private const val RATIO = 3 / 4f
+
+@OptIn(ExperimentalMaterial3Api::class)
+@Composable
+fun PopularMoviesContent(
+    movieList: List<Movie>,
+) {
+    LazyRow(
+        contentPadding = PaddingValues(16.dp),
+        horizontalArrangement = Arrangement.spacedBy(4.dp),
+    ) {
+        items(movieList) { item ->
+
+            OutlinedCard(
+                onClick = { /*TODO*/ },
+                colors = CardDefaults.outlinedCardColors(containerColor = MaterialTheme.colorScheme.secondaryContainer),
+            ) {
+                Box(
+                    Modifier
+                        .width(200.dp)
+                        .aspectRatio(RATIO),
+                ) {
+                    AsyncImage(
+                        model = item.backdropPath,
+                        contentDescription = null,
+                        modifier = Modifier.matchParentSize(),
+                        contentScale = ContentScale.Crop,
+                    )
+                }
+            }
+        }
     }
 }
 
@@ -161,14 +220,24 @@ private fun AnnotatedString.Builder.Property(
 }
 
 @Suppress("UnusedPrivateMember")
-@Preview
+@Preview(
+    name = "Day Mode",
+    uiMode = Configuration.UI_MODE_NIGHT_NO,
+)
+@Preview(
+    name = "Night Mode",
+    uiMode = Configuration.UI_MODE_NIGHT_YES,
+)
 @Composable
 private fun DetailPreview() {
     ThemoviedbTheme {
-        Detail(
-            0,
+        DetailContent(
+            state = DetailViewModel.UiState(
+                movie = movie1,
+                popularMovies = listOf(movie1, movie2, movie3),
+            ),
             onUpClick = {},
-            vm = DetailViewModel(0),
+            onFavoriteClicked = {},
         )
     }
 }
