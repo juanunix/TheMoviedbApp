@@ -21,6 +21,9 @@ jobs:
       - name: Setup
         uses: ./.github/actions/workflow_setup
 
+      - name: Make gradlew executable
+        run: chmod +x ./gradlew   
+
       - name: Run Tests
         uses: reactivecircus/android-emulator-runner@v2
         with:
