@@ -17,17 +17,32 @@ import kotlinx.coroutines.launch
 
 class DetailViewModel(
     val findMovieByIdUseCase: FindMovieByIdUseCase,
-    val requestPopularMoviesUse: RequestPopularMoviesUseCase,
+    val requestPopularMovies: RequestPopularMoviesUseCase,
     private val toggleMovieFavoriteUseCase: ToggleMovieFavoriteUseCase,
 ) : ViewModel() {
     private val _state = MutableStateFlow(UiState())
     val state: StateFlow<UiState> = _state.asStateFlow()
 
+    init {
+        requestPopularMovies()
+    }
+
     fun findMovieByIdUseCase(movieId: Int) {
         viewModelScope.launch(Dispatchers.IO) {
             try {
                 val movie = findMovieByIdUseCase.invoke(movieId)
-                _state.update { UiState(movie = movie) }
+                _state.update { it.copy(movie = movie) }
+            } catch (cause: Throwable) {
+                _state.update { it.copy(error = cause.toError()) }
+            }
+        }
+    }
+
+    fun requestPopularMovies() {
+        viewModelScope.launch(Dispatchers.IO) {
+            try {
+                val movies = requestPopularMovies.invoke()
+                _state.update { it.copy(popularMovies = movies) }
             } catch (cause: Throwable) {
                 _state.update { it.copy(error = cause.toError()) }
             }

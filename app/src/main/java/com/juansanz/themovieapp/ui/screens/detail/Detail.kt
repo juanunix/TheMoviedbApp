@@ -52,6 +52,7 @@ import com.juansanz.domain.movie2
 import com.juansanz.domain.movie3
 import com.juansanz.themovieapp.ui.DetailViewModel
 import com.juansanz.themovieapp.ui.screens.common.ErrorText
+import com.juansanz.themovieapp.ui.screens.home.RATIO
 import com.juansanz.themovieapp.ui.theme.ThemoviedbTheme
 import org.koin.androidx.compose.koinViewModel
 
@@ -140,12 +141,11 @@ fun MovieContent(
     movie: Movie,
     modifier: Modifier = Modifier,
 ) {
-    val imageUrl = "https://image.tmdb.org/t/p/w780/${movie.backdropPath}"
     Column(
         modifier = modifier.verticalScroll(rememberScrollState()),
     ) {
         AsyncImage(
-            model = imageUrl,
+            model = movie.backdropPath,
             contentDescription = movie.title,
             contentScale = ContentScale.Crop,
             modifier = Modifier.fillMaxWidth(),
@@ -164,6 +164,7 @@ fun MovieContent(
                 .background(color = MaterialTheme.colorScheme.secondaryContainer)
                 .padding(16.dp),
         )
+        Text(text = "Top 20 Popular Movies", modifier = Modifier.padding(16.dp))
         PopularMoviesContent(movieList = movieList)
     }
 }
@@ -180,7 +181,6 @@ fun PopularMoviesContent(
         horizontalArrangement = Arrangement.spacedBy(4.dp),
     ) {
         items(movieList) { item ->
-
             OutlinedCard(
                 onClick = { /*TODO*/ },
                 colors = CardDefaults.outlinedCardColors(containerColor = MaterialTheme.colorScheme.secondaryContainer),
@@ -193,8 +193,10 @@ fun PopularMoviesContent(
                     AsyncImage(
                         model = item.backdropPath,
                         contentDescription = null,
-                        modifier = Modifier.matchParentSize(),
                         contentScale = ContentScale.Crop,
+                        modifier = Modifier
+                            .fillMaxWidth()
+                            .aspectRatio(RATIO),
                     )
                 }
             }
