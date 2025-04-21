@@ -53,17 +53,17 @@ import com.juansanz.domain.movie3
 import com.juansanz.themovieapp.ui.DetailViewModel
 import com.juansanz.themovieapp.ui.screens.common.ErrorText
 import com.juansanz.themovieapp.ui.theme.ThemoviedbTheme
+import org.koin.androidx.compose.koinViewModel
 
 @OptIn(ExperimentalMaterial3Api::class)
 @Composable
 fun Detail(
     movieId: Int,
     onUpClick: () -> Unit,
-    vm: DetailViewModel = DetailViewModel(
-        movieId = movieId,
-    ),
+    vm: DetailViewModel = koinViewModel(),
 ) {
     val state by vm.state.collectAsState()
+    vm.findMovieByIdUseCase(movieId = movieId)
     DetailContent(state, onUpClick, vm::onFavoriteClicked)
 }
 

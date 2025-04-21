@@ -2,11 +2,9 @@ package com.juansanz.themovieapp.ui
 
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
-import com.juansanz.data.MoviesRepository
 import com.juansanz.domain.Error
 import com.juansanz.domain.Movie
 import com.juansanz.themovieapp.data.toError
-import com.juansanz.themovieapp.di.AppModule
 import com.juansanz.usecases.FindMovieByIdUseCase
 import com.juansanz.usecases.RequestPopularMoviesUseCase
 import com.juansanz.usecases.ToggleMovieFavoriteUseCase
@@ -18,36 +16,37 @@ import kotlinx.coroutines.flow.update
 import kotlinx.coroutines.launch
 
 class DetailViewModel(
-    private val movieId: Int,
-    val moviesRepository: MoviesRepository = AppModule.moviesRepository,
-    val findMovieByIdUseCase: FindMovieByIdUseCase = FindMovieByIdUseCase(moviesRepository),
-    val requestPopularMoviesUse: RequestPopularMoviesUseCase = RequestPopularMoviesUseCase(moviesRepository),
-    private val toggleMovieFavoriteUseCase: ToggleMovieFavoriteUseCase = ToggleMovieFavoriteUseCase(moviesRepository),
+    val findMovieByIdUseCase: FindMovieByIdUseCase,
+    val requestPopularMoviesUse: RequestPopularMoviesUseCase,
+    private val toggleMovieFavoriteUseCase: ToggleMovieFavoriteUseCase,
 ) : ViewModel() {
     private val _state = MutableStateFlow(UiState())
     val state: StateFlow<UiState> = _state.asStateFlow()
 
     init {
-        // Cargar la película por ID
-        viewModelScope.launch(Dispatchers.IO) {
-            try {
-                val movie = findMovieByIdUseCase(movieId)
-                _state.update { UiState(movie = movie) }
-            } catch (cause: Throwable) {
-                _state.update { it.copy(error = cause.toError()) }
-            }
-        }
-
         // TODO
         // Cargar películas populares
-        /*viewModelScope.launch(Dispatchers.IO) {
+        /*
+        viewModelScope.launch(Dispatchers.IO) {
             try {
                 val popularMovies = requestPopularMoviesUse()
                 _state.update { UiState(popularMovies = popularMovies) }
             } catch (cause: Throwable) {
                 _state.update { it.copy(error = cause.toError()) }
             }
-        }*/
+        }
+         */
+    }
+
+    fun findMovieByIdUseCase(movieId: Int) {
+        viewModelScope.launch(Dispatchers.IO) {
+            try {
+                val movie = findMovieByIdUseCase.invoke(movieId)
+                _state.update { UiState(movie = movie) }
+            } catch (cause: Throwable) {
+                _state.update { it.copy(error = cause.toError()) }
+            }
+        }
     }
 
     fun onFavoriteClicked() {

@@ -3,11 +3,9 @@ package com.juansanz.themovieapp.data.server
 import com.juansanz.data.datasource.RemoteDataSource
 import com.juansanz.domain.Movie
 
-class MovieServerDataSource(
-    private val remoteService: RemoteService,
-) : RemoteDataSource {
+class MovieServerDataSource : RemoteDataSource {
     override suspend fun findAllMovies(): List<Movie> =
-        remoteService
+        TheMovieDb.service
             .findAllMovies()
             .toDomainModel()
 }
