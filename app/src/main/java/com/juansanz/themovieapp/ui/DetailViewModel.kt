@@ -23,21 +23,6 @@ class DetailViewModel(
     private val _state = MutableStateFlow(UiState())
     val state: StateFlow<UiState> = _state.asStateFlow()
 
-    init {
-        // TODO
-        // Cargar películas populares
-        /*
-        viewModelScope.launch(Dispatchers.IO) {
-            try {
-                val popularMovies = requestPopularMoviesUse()
-                _state.update { UiState(popularMovies = popularMovies) }
-            } catch (cause: Throwable) {
-                _state.update { it.copy(error = cause.toError()) }
-            }
-        }
-         */
-    }
-
     fun findMovieByIdUseCase(movieId: Int) {
         viewModelScope.launch(Dispatchers.IO) {
             try {
