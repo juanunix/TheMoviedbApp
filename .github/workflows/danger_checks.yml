@@ -18,6 +18,9 @@ jobs:
       - name: Setup
         uses: ./.github/actions/workflow_setup
 
+      - name: Make gradlew executable
+        run: chmod +x ./gradlew
+
       - name: Dependency Updates
         run: ./gradlew dependencyUpdates
 
