@@ -1,31 +1,43 @@
 name: Android UI Tests
 
-# This will cancel any in progress workflows for the same PR, if
-# multiple pushes happen in quick succession.
-concurrency:
-  group: ${{ github.workflow }}-${{ github.event.pull_request.number || github.ref }}
-  cancel-in-progress: true
-
 on:
   pull_request:
+    types:
+      - opened
+      - synchronize
+  workflow_dispatch:
 
 jobs:
-  android-test:
-    # At this moment in time, the emulator runner
-    # does not work on macos-14: https://github.com/ReactiveCircus/android-emulator-runner/issues/392#issuecomment-2106167725
-    runs-on: macos-13
+
+  uiTest:
+    runs-on: ubuntu-latest
+    strategy:
+      matrix:
+        api-level: [ 25, 27, 29 ]
+
     steps:
       - name: Checkout
         uses: actions/checkout@v4
 
-      - name: Setup
-        uses: ./.github/actions/workflow_setup
-
-      - name: Make gradlew executable
-        run: chmod +x ./gradlew   
-
-      - name: Run Tests
+      - name: Set up JDK
+        uses: actions/setup-java@v4
+        with:
+          distribution: 'temurin'
+          java-version: '17'
+      - name: Setup Android SDK
+        uses: android-actions/setup-android@v3
+      - name: Add secrets
+        run: |
+          cat > local.properties << ENDOFFILE
+          API_KEY=${{ secrets.API_KEY }}
+          ENDOFFILE
+      - name: Enable KVM
+        run: |
+          echo 'KERNEL=="kvm", GROUP="kvm", MODE="0666", OPTIONS+="static_node=kvm"' | sudo tee /etc/udev/rules.d/99-kvm4all.rules
+          sudo udevadm control --reload-rules
+          sudo udevadm trigger --name-match=kvm
+      - name: run tests
         uses: reactivecircus/android-emulator-runner@v2
         with:
           api-level: 29
-          script: ./gradlew app:connectedCheck
+          script: ./gradlew connectedCheck
